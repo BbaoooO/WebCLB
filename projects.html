@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự án - CLB</title>
+    <link rel="stylesheet" href="members.css">
+    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="members-page">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <h2>MAIN MENU</h2>
+        </div>
+        <div class="menu-items">
+            <a href="dashboard.html" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+            <a href="members.html" class="menu-item">
+                <i class="fas fa-users"></i> Thành viên
+            </a>
+            <a href="projects.html" class="menu-item active">
+                <i class="fas fa-folder"></i>
+                <span>Dự án</span>
+            </a>
+            <div class="menu-section">BÁO CÁO</div>
+            <a href="leave-request.html" class="menu-item">
+                <i class="fas fa-calendar-minus"></i>
+                <span>Đơn xin nghỉ phép</span>
+            </a>
+            <a href="expense-tracker.html" class="menu-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Báo cáo hàng ngày</span>
+            </a>
+            <div class="menu-section">KHÁC</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i>
+                <span>Cài đặt</span>
+            </a>
+        </div>
+        <div class="logout">
+            <a href="login.html" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="section-header">
+            <div class="header-left">
+                <h1>Dự án</h1>
+            </div>
+            <div class="header-actions">
+                <div class="user-profile">
+                    <img src="path/to/avatar.jpg" alt="User Avatar">
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Content -->
+        <div class="projects-container">
+            <!-- Projects List -->
+            <div class="projects-list">
+                <div class="projects-header">
+                    <h2>Danh sách dự án</h2>
+                    <button class="add-project-btn" onclick="showCreateProjectForm()">
+                        <i class="fas fa-plus"></i>
+                        Thêm dự án mới
+                    </button>
+                </div>
+                <div class="projects-grid">
+                    <!-- Project cards will be rendered here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Overlay -->
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <!-- Create Project Form -->
+        <div class="create-project-form" id="createProjectForm">
+            <div class="form-header">
+                <h2>Tạo Dự án Mới</h2>
+                <button class="close-form-btn" onclick="hideCreateProjectForm()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="projectForm">
+                <div class="form-group">
+                    <label for="projectName">Tên dự án</label>
+                    <input type="text" id="projectName" name="projectName" required placeholder="Nhập tên dự án">
+                </div>
+                <div class="form-group">
+                    <label for="projectDescription">Mô tả</label>
+                    <textarea id="projectDescription" name="projectDescription" required placeholder="Mô tả chi tiết về dự án"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startDate">Ngày bắt đầu</label>
+                        <input type="date" id="startDate" name="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Ngày kết thúc</label>
+                        <input type="date" id="endDate" name="endDate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="projectLeader">Nhóm trưởng</label>
+                    <select id="projectLeader" name="projectLeader" required>
+                        <option value="">Chọn nhóm trưởng</option>
+                        <!-- JS sẽ render option thành viên -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Thành viên dự án</label>
+                    <div class="member-selection">
+                        <!-- Member checkboxes will be added dynamically -->
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" onclick="hideCreateProjectForm()">Hủy</button>
+                    <button type="submit" class="submit-btn">Tạo dự án</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Template for Project Card -->
+    <template id="project-card-template">
+        <div class="project-card" data-project-id="{{id}}">
+            <div class="project-header">
+                <div class="project-status {{statusClass}}">{{statusText}}</div>
+                <div class="project-menu">
+                    <i class="fas fa-ellipsis-v"></i>
+                    <div class="project-menu-dropdown">
+                        <div class="menu-item status-item" data-status="pending">
+                            <i class="fas fa-clock"></i> Chờ xử lý
+                        </div>
+                        <div class="menu-item status-item" data-status="ongoing">
+                            <i class="fas fa-tasks"></i> Đang thực hiện
+                        </div>
+                        <div class="menu-item status-item" data-status="completed">
+                            <i class="fas fa-check-circle"></i> Hoàn thành
+                        </div>
+                        <div class="menu-item delete delete-item">
+                            <i class="fas fa-trash-alt"></i> Xóa dự án
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="project-title">{{title}}</h3>
+            <p class="project-description">{{description}}</p>
+            <div class="project-info">
+                <div class="project-dates">
+                    <div class="date-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Bắt đầu: {{startDate}}</span>
+                    </div>
+                    <div class="date-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Kết thúc: {{endDate}}</span>
+                    </div>
+                </div>
+                <div class="project-team">
+                    <div class="team-leader">
+                        <div class="member-avatar" title="{{leaderName}}">
+                            <img src="{{leaderAvatar}}" alt="Leader">
+                        </div>
+                    </div>
+                    <div class="team-members">
+                        <label>Thành viên:</label>
+                        <div class="member-avatars">
+                            <!-- Member avatars will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="projects.js"></script>
+</body>
+</html>

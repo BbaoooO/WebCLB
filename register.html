@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - CLB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-form">
+            <a href="login.html" class="back-button">←</a>
+            <h1>Đăng ký tài khoản</h1>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="nhập Email của bạn" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="password" placeholder="nhập mật khẩu của bạn" required>
+                        <i class="toggle-password fas fa-eye-slash"></i>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bars">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                        <span class="strength-text">ít nhất 8 kí tự</span>
+                    </div>
+                </div>
+
+                <div class="form-group terms-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="terms" required>
+                        <span class="checkmark"></span>
+                        <span class="terms-text">
+                            By creating your account, you agree to our 
+                            <a href="#" class="terms-link">Terms and Conditions</a> &
+                            <a href="#" class="privacy-link">Privacy Policy</a>
+                        </span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="login-button">Đăng kí</button>
+                
+                <p class="register-text">
+                    Đã có tài khoản? <a href="login.html" class="login-link">Đăng nhập</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="register.js"></script>
+</body>
+</html> 

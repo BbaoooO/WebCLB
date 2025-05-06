@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - CLB</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>MAIN MENU</h2>
+            </div>
+            <div class="menu-items">
+                <a href="dashboard.html" class="menu-item active">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="members.html" class="menu-item">
+                    <i class="fas fa-users"></i> Thành viên
+                </a>
+                <a href="projects.html" class="menu-item">
+                    <i class="fas fa-folder"></i>
+                    <span>Dự án</span>
+                </a>
+                <div class="menu-section">BÁO CÁO</div>
+                <a href="leave-request.html" class="menu-item">
+                    <i class="fas fa-calendar-minus"></i>
+                    <span>Đơn xin nghỉ phép</span>
+                </a>
+                <a href="expense-tracker.html" class="menu-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Báo cáo hàng ngày</span>
+                </a>
+                <div class="menu-section">KHÁC</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Cài đặt</span>
+                </a>
+            </div>
+            <div class="logout">
+                <a href="login.html" class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Đăng xuất</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>Welcome to the Dashboard</h1>
+            <p>Select an option from the sidebar to navigate.</p>
+            <!-- Top Stats -->
+            <div class="top-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Lịch</span>
+                        <span class="stat-value" id="current-date"></span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Đánh giá CLB</span>
+                        <div class="stat-value rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Công việc</span>
+                        <span class="stat-value" id="ongoing-projects">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Thành viên</span>
+                        <span class="stat-value" id="total-members">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-section">
+                    <div class="section-header">
+                        <h2>Báo cáo Chi tiêu</h2>
+                        <div class="time-filter">
+                            <select>
+                                <option value="month" selected>Tháng này</option>
+                                <option value="week">Tuần này</option>
+                                <option value="day">Hôm nay</option>
+                                <option value="year">Năm nay</option>
+                            </select>
+                            <button class="view-report">Xem Báo cáo</button>
+                        </div>
+                    </div>
+                    <div class="chart-area">
+                        <div class="y-axis">
+                            <span>20.000đ</span>
+                            <span>18.000đ</span>
+                            <span>16.000đ</span>
+                            <span>14.000đ</span>
+                            <span>12.000đ</span>
+                            <span>10.000đ</span>
+                            <span>8.000đ</span>
+                            <span>6.000đ</span>
+                            <span>4.000đ</span>
+                            <span>2.000đ</span>
+                            <span>0đ</span>
+                        </div>
+                        <div class="chart-content">
+                            <canvas id="spendingChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-marker">
+                                <span class="dot income"></span>
+                                <span>Thu nhập</span>
+                            </div>
+                            <span class="value">0đ</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-marker">
+                                <span class="dot expense"></span>
+                                <span>Chi tiêu</span>
+                            </div>
+                            <span class="value">0đ</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-marker">
+                                <span>Số dư</span>
+                            </div>
+                            <span class="value balance">0đ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar -->
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <h3>Lịch</h3>
+                        <div class="calendar-nav">
+                            <button class="prev-month"><i class="fas fa-chevron-left"></i></button>
+                            <span class="current-month">Tháng 4, 2024</span>
+                            <button class="next-month"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="calendar-body">
+                        <div class="calendar-event">
+                            <div class="event-date">April 1</div>
+                            <div class="event-content">
+                                <h4>5-Minute Workouts for Busy People</h4>
+                                <p>Robert Fox</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Analysis & Leave Requests -->
+            <div class="bottom-section">
+                <!-- Task Analysis -->
+                <div class="task-analysis">
+                    <h3>Bảng phân tích công việc</h3>
+                    <div class="task-stats">
+                        <div class="task-stat-item">
+                            <span class="stat-label">Số lượng công việc</span>
+                            <span class="stat-value">476</span>
+                        </div>
+                        <div class="task-stat-item">
+                            <span class="stat-label">Đang thực hiện</span>
+                            <span class="stat-value" id="ongoing-count">0</span>
+                        </div>
+                    </div>
+                    <div class="task-chart">
+                        <div id="taskProgressChart"></div>
+                        <div class="task-legend">
+                            <div class="legend-item">
+                                <span class="legend-color completed"></span>
+                                <span>Đã hoàn thành</span>
+                                <span class="legend-value">186</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color in-progress"></span>
+                                <span>Việc đang làm</span>
+                                <span class="legend-value">47</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color scheduled"></span>
+                                <span>Việc đang lên lịch</span>
+                                <span class="legend-value">23</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color planned"></span>
+                                <span>Việc dự định</span>
+                                <span class="legend-value">48</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color suspended"></span>
+                                <span>Việc bị tạm hoãn</span>
+                                <span class="legend-value">54</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leave Requests -->
+                <div class="leave-requests">
+                    <h3>Đơn xin vắng mặt <span class="badge">4</span></h3>
+                    <div class="leave-list">
+                        <!-- Danh sách đơn xin vắng mặt sẽ được render ở đây bởi JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Contributions -->
+            <div class="member-contributions">
+                <h3>Đóng góp của các thành viên</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tên</th>
+                                <th>Email</th>
+                                <th>Số ngày tham gia</th>
+                                <th>Số ngày vắng mặt</th>
+                                <th>Chức vụ</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr> <!-- table row -->
+                                <td> <!-- table data -->
+                                    <div class="user-info">
+                                        <img src="https://via.placeholder.com/40" alt="User">
+                                        <span>Martin Lewis</span>
+                                    </div>
+                                </td>
+                                <td>martinlewis@gmail.com</td>
+                                <td>6</td>
+                                <td>2</td>
+                                <td>Trưởng CLB B</td>
+                                <td><span class="status offline">Không hoạt động</span></td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-info">
+                                        <img src="https://via.placeholder.com/40" alt="User">
+                                        <span>Sofia Annisa</span>
+                                    </div>
+                                </td>
+                                <td>annisasofia@gmail.com</td>
+                                <td>8</td>
+                                <td>0</td>
+                                <td>Trưởng CLB B</td>
+                                <td><span class="status online">Hoạt động</span></td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-info">
+                                        <img src="https://via.placeholder.com/40" alt="User">
+                                        <span>Shakir Ramzi</span>
+                                    </div>
+                                </td>
+                                <td>shakirramzi@gmail.com</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>Thành viên</td>
+                                <td><span class="status offline">Không hoạt động</span></td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-info">
+                                        <img src="https://via.placeholder.com/40" alt="User">
+                                        <span>Matias Olaye</span>
+                                    </div>
+                                </td>
+                                <td>matiasolaye@gmail.com</td>
+                                <td>5</td>
+                                <td>3</td>
+                                <td>Thủ quỹ</td>
+                                <td><span class="status online">Hoạt động</span></td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-pagination">
+                    <span>Showing 1 to 4 of 4 Entries</span>
+                    <div class="pagination-controls">
+                        <button class="prev-page" disabled><i class="fas fa-chevron-left"></i></button>
+                        <span class="current-page">1</span>
+                        <button class="next-page"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

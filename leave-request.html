@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đơn xin nghỉ phép - CLB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="leave-request.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <h2>MAIN MENU</h2>
+        </div>
+        <div class="menu-items">
+            <a href="dashboard.html" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+            <a href="members.html" class="menu-item">
+                <i class="fas fa-users"></i> Thành viên
+            </a>
+            <a href="projects.html" class="menu-item">
+                <i class="fas fa-folder"></i> Dự án
+            </a>
+            <div class="menu-section">BÁO CÁO</div>
+            <a href="leave-request.html" class="menu-item active">
+                <i class="fas fa-calendar-minus"></i> Đơn xin nghỉ phép
+            </a>
+            <a href="expense-tracker.html" class="menu-item">
+                <i class="fas fa-calendar-check"></i> Báo cáo hàng ngày
+            </a>
+            <div class="menu-section">KHÁC</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i> Cài đặt
+            </a>
+        </div>
+        <div class="logout">
+            <a href="login.html" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="section-header">
+            <div class="header-left">
+                <h1>Đơn xin nghỉ phép</h1>
+            </div>
+            <div class="header-actions">
+                <div class="user-profile">
+                    <img src="path/to/avatar.jpg" alt="User Avatar">
+                </div>
+            </div>
+        </div>
+
+        <div class="leave-request-container">
+            <div class="leave-request-form">
+                <div class="form-header">
+                    <h2>Tạo đơn xin nghỉ phép</h2>
+                    <p>Vui lòng điền đầy đủ thông tin bên dưới</p>
+                </div>
+
+                <form id="leaveRequestForm">
+                    <div class="form-group">
+                        <label for="leaveType">Loại nghỉ phép</label>
+                        <select id="leaveType" name="leaveType" required>
+                            <option value="">Chọn loại nghỉ phép</option>
+                            <option value="annual">Nghỉ phép năm</option>
+                            <option value="sick">Nghỉ ốm</option>
+                            <option value="personal">Việc cá nhân</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startDate">Ngày bắt đầu</label>
+                            <input type="date" id="startDate" name="startDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endDate">Ngày kết thúc</label>
+                            <input type="date" id="endDate" name="endDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duration">Số ngày nghỉ</label>
+                        <input type="number" id="duration" name="duration" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">Lý do nghỉ phép</label>
+                        <textarea id="reason" name="reason" required placeholder="Nhập lý do xin nghỉ phép"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="handover">Bàn giao công việc cho</label>
+                        <select id="handover" name="handover" required>
+                            <option value="">Chọn người bàn giao</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactInfo">Thông tin liên lạc khi nghỉ</label>
+                        <input type="text" id="contactInfo" name="contactInfo" required placeholder="Số điện thoại hoặc email">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Hủy</button>
+                        <button type="submit" class="submit-btn">Gửi đơn</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="leave-history">
+                <h3>Lịch sử nghỉ phép</h3>
+                <div class="history-list">
+                    <!-- Leave history will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="leave-request.js"></script>
+</body>
+</html> 

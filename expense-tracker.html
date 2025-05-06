@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Chi tiêu</title>
+    <link rel="stylesheet" href="expense-tracker.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>MAIN MENU</h2>
+        
+        <div class="menu-items">
+            <a href="dashboard.html" class="menu-item">
+                <i class="fas fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="members.html" class="menu-item">
+                <i class="fas fa-users"></i>
+                <span>Thành viên</span>
+            </a>
+            <a href="projects.html" class="menu-item">
+                <i class="fas fa-folder"></i>
+                <span>Dự án</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-users-cog"></i>
+            </a>
+
+            <div class="menu-section">BÁO CÁO</div>
+            <a href="leave-request.html" class="menu-item">
+                <i class="fas fa-calendar-minus"></i>
+                <span>Đơn xin nghỉ phép</span>
+            </a>
+            <a href="expense-tracker.html" class="menu-item active">
+                <i class="fas fa-calendar-check"></i>
+                <span>Báo cáo hàng ngày</span>
+            </a>
+
+            <div class="menu-section">KHÁC</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i>
+                <span>Cài đặt</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Thống kê tổng quan -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Số dư tháng này</h3>
+                    <div class="amount">
+                        <span class="currency">VNĐ</span>
+                        <div id="balance-display">0</div>
+                    </div>
+                </div>
+                <div class="stat-card highlight">
+                    <h3>Tổng thu</h3>
+                    <div class="amount">
+                        <span class="currency">VNĐ</span>
+                        <div id="income-display">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h3>Tổng chi</h3>
+                    <div class="amount">
+                        <span class="currency">VNĐ</span>
+                        <div id="expense-display">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="content-wrapper">
+                <!-- Biểu đồ chi tiêu -->
+                <div class="spending-report">
+                    <div class="report-header">
+                        <div class="report-title">
+                            <h2>Báo cáo Chi tiêu</h2>
+                            <div class="report-filters">
+                                <select class="time-range-select">
+                                    <option value="day">Hôm nay</option>
+                                    <option value="week">Tuần này</option>
+                                    <option value="month" selected>Tháng này</option>
+                                    <option value="year">Năm nay</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="view-report-btn">Xem Báo cáo</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="spendingChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Transactions Section -->
+                <div class="transactions-wrapper">
+                    <!-- Form nhập thông tin thu chi -->
+                    <div class="add-transaction-section">
+                        <div class="section-header">
+                            <h2>Thêm Giao Dịch</h2>
+                            <button class="add-transaction-btn" onclick="toggleTransactionForm()">
+                                <i class="fas fa-plus"></i> Thêm giao dịch
+                            </button>
+                        </div>
+
+                        <!-- Form nhập giao dịch -->
+                        <div class="transaction-form" id="transactionForm" style="display: none;">
+                            <form id="addTransactionForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Loại giao dịch</label>
+                                        <div class="transaction-type-toggle">
+                                            <input type="radio" id="income" name="type" value="income" checked>
+                                            <label for="income" class="toggle-btn income">Thu</label>
+                                            <input type="radio" id="expense" name="type" value="expense">
+                                            <label for="expense" class="toggle-btn expense">Chi</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="amount">Số tiền</label>
+                                        <input type="number" id="amount" name="amount" required placeholder="Nhập số tiền">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="category">Danh mục</label>
+                                        <select id="category" name="category" required>
+                                            <option value="">Chọn danh mục</option>
+                                            <optgroup label="Thu">
+                                                <option value="salary">Lương</option>
+                                                <option value="bonus">Thưởng</option>
+                                                <option value="investment">Đầu tư</option>
+                                                <option value="other_income">Khác</option>
+                                            </optgroup>
+                                            <optgroup label="Chi">
+                                                <option value="food">Ăn uống</option>
+                                                <option value="transport">Di chuyển</option>
+                                                <option value="utilities">Tiện ích</option>
+                                                <option value="entertainment">Giải trí</option>
+                                                <option value="other_expense">Khác</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date">Ngày giao dịch</label>
+                                        <input type="datetime-local" id="date" name="date" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Mô tả</label>
+                                    <textarea id="description" name="description" rows="2" placeholder="Nhập mô tả giao dịch"></textarea>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="cancel-btn" onclick="toggleTransactionForm()">Hủy</button>
+                                    <button type="submit" class="submit-btn">Lưu giao dịch</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Lịch sử giao dịch -->
+                    <div class="transaction-history">
+                        <div class="history-header">
+                            <h2>Lịch sử Giao dịch</h2>
+                            <div class="report-actions">
+                                <button class="report-btn primary"><i class="fas fa-file-alt"></i> Xem Báo cáo</button>
+                                <button class="report-btn secondary"><i class="fas fa-download"></i> Tải Báo cáo</button>
+                            </div>
+                        </div>
+                        <div class="transactions">
+                            <!-- Transaction items will be added here -->
+                        </div>
+                        <div class="transaction-pagination">
+                            <button id="prevPage" class="pagination-btn">
+                                <i class="fas fa-chevron-left"></i>
+                                Trang trước
+                            </button>
+                            <div class="pagination-info">
+                                Trang <span id="currentPage">1</span> / <span id="totalPages">1</span>
+                            </div>
+                            <button id="nextPage" class="pagination-btn">
+                                Trang sau
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="balance-container">
+                        <button class="clear-data-btn" onclick="clearAllData()">
+                            <i class="fas fa-trash"></i>
+                            Xóa dữ liệu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="expense-tracker.js"></script>
+</body>
+</html> 

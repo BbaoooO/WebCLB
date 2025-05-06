@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác thực OTP - CLB</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-form">
+            <a href="forgot-password.html" class="back-button">←</a>
+            <h1>Mã OTP</h1>
+            <p class="subtitle">Chúng tôi đã gửi 1 mã OTP đến tài khoản email của bạn</p>
+            
+            <form id="otpForm">
+                <div class="form-group">
+                    <label for="otp">Code OTP</label>
+                    <div class="otp-inputs">
+                        <input type="text" maxlength="1" class="otp-input" required>
+                        <input type="text" maxlength="1" class="otp-input" required>
+                        <input type="text" maxlength="1" class="otp-input" required>
+                        <input type="text" maxlength="1" class="otp-input" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="login-button">Đăng nhập</button>
+            </form>
+        </div>
+    </div>
+    <script src="verify-code.js"></script>
+</body>
+</html> 

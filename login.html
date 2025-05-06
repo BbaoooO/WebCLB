@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - CLB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-form">
+            <h1>Chào mừng đến với trình quản lý CLB</h1>
+            <p class="subtitle">Đăng nhập vào tài khoản</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="nhập Email của bạn" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="password" placeholder="nhập Password của bạn" required>
+                        <i class="toggle-password fas fa-eye-slash"></i>
+                    </div>
+                </div>
+                
+                <a href="forgot-password.html" class="forgot-password">Quên mật khẩu?</a>
+                
+                <button type="submit" class="login-button">Đăng nhập</button>
+                
+                <p class="register-text">
+                    Không có tài khoản? <a href="register.html" class="register-link">Đăng ký</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

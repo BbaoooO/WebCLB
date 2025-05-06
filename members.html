@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thành viên - CLB</title>
+    <link rel="stylesheet" href="members.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="members-page">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <h2>MAIN MENU</h2>
+        </div>
+        <div class="menu-items">
+            <a href="dashboard.html" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+            <a href="members.html" class="menu-item active">
+                <i class="fas fa-users"></i> Thành viên
+            </a>
+            <a href="projects.html" class="menu-item">
+                <i class="fas fa-folder"></i>
+                <span>Dự án</span>
+            </a>
+            <div class="menu-section">BÁO CÁO</div>
+            <a href="leave-request.html" class="menu-item">
+                <i class="fas fa-calendar-minus"></i>
+                <span>Đơn xin nghỉ phép</span>
+            </a>
+            <a href="expense-tracker.html" class="menu-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Báo cáo hàng ngày</span>
+            </a>
+            <div class="menu-section">KHÁC</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i>
+                <span>Cài đặt</span>
+            </a>
+                </div>
+        <div class="logout">
+            <a href="login.html" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+        </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="section-header">
+            <h1>Các thành viên</h1>
+            <button class="add-member-btn" onclick="openModal()">
+                <i class="fas fa-user-plus"></i>
+                Thêm thành viên mới
+                </button>
+            </div>
+
+        <!-- Table Section -->
+        <div class="table-section">
+            <table class="client-table">
+                <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Chức vụ</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Mã thành viên</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-member-id="1">
+                        <td>Richard Tyson</td>
+                        <td>CEO at Tokopedia</td>
+                        <td>richardtyson@gmail.com</td>
+                        <td>+628132513288</td>
+                        <td>CLT - 001</td>
+                    </tr>
+                    <tr data-member-id="2">
+                        <td>Daffa Naufal</td>
+                        <td>Developer</td>
+                        <td>daffanaufal@gmail.com</td>
+                        <td>+6212345678</td>
+                        <td>GGL - 001</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+
+        <!-- Member Detail Section -->
+        <div class="member-detail">
+            <div class="member-detail-header">
+                <img src="" alt="Member Avatar" class="member-avatar">
+                <div class="member-basic-info">
+                    <h2></h2>
+                    <div class="member-position"></div>
+                </div>
+            </div>
+            <div class="member-detail-content">
+                <div class="detail-section">
+                    <h3>Thông tin cá nhân</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Mã thành viên:</div>
+                        <div class="detail-value emp-id"></div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Email:</div>
+                        <div class="detail-value email"></div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Số điện thoại:</div>
+                        <div class="detail-value phone"></div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Địa chỉ:</div>
+                        <div class="detail-value address"></div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>Thông tin công việc</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Ngành học:</div>
+                        <div class="detail-value department"></div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Ngày tham gia:</div>
+                        <div class="detail-value join-date"></div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Trạng thái:</div>
+                        <div class="detail-value status"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Member Modal -->
+        <div id="addMemberModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Thêm thành viên mới</h2>
+                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <form id="addMemberForm">
+                    <div class="avatar-upload">
+                        <div class="avatar-preview">
+                            <img id="avatarPreview" src="path/to/default-avatar.jpg" alt="Avatar Preview">
+                            <div class="avatar-overlay">
+                                <i class="fas fa-camera"></i>
+                                <span>Thêm ảnh</span>
+                            </div>
+                        </div>
+                        <input type="file" id="avatarInput" name="avatar" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Họ và tên</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Chức vụ</label>
+                        <input type="text" id="position" name="position" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="empId">Mã thành viên</label>
+                        <input type="text" id="empId" name="empId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Ngành học</label>
+                        <input type="text" id="department" name="department" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="joinDate">Ngày vào CLB</label>
+                        <input type="date" id="joinDate" name="joinDate" required>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="cancel-btn" onclick="closeModal()">Hủy</button>
+                        <button type="submit" class="submit-btn">Thêm thành viên</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="members.js"></script>
+</body>
+</html>
