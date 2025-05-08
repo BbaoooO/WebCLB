@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bảng Tâm Trạng CLB</title>
+    <link rel="stylesheet" href="members.css">
+    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="moodboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="members-page">
+    <!-- Sidebar giống y chang members.html -->
+    <div class="sidebar">
+        <div class="logo">
+            <h2>MAIN MENU</h2>
+        </div>
+        <div class="menu-items">
+            <a href="dashboard.html" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+            <a href="members.html" class="menu-item">
+                <i class="fas fa-users"></i> Thành viên
+            </a>
+            <a href="projects.html" class="menu-item">
+                <i class="fas fa-folder"></i> Dự án
+            </a>
+            <div class="menu-section">BÁO CÁO</div>
+            <a href="leave-request.html" class="menu-item">
+                <i class="fas fa-calendar-minus"></i> Đơn xin nghỉ phép
+            </a>
+            <a href="expense-tracker.html" class="menu-item">
+                <i class="fas fa-calendar-check"></i> Báo cáo hàng ngày
+            </a>
+            <a href="moodboard.html" class="menu-item active">
+                <i class="fas fa-face-smile"></i> Bảng tâm trạng CLB
+            </a>
+            <a href="profile.html" class="menu-item">
+                <i class="fas fa-id-badge"></i> Hồ sơ thành tích
+            </a>
+        </div>
+        <div class="logout">
+            <a href="login.html" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </a>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="moodboard-container">
+        <h1>Bảng Tâm Trạng CLB</h1>
+        <div class="mood-input">
+            <label>Chọn biểu cảm hôm nay:</label>
+            <div class="emoji-list">
+                <span class="emoji" data-mood="happy">😃</span>
+                <span class="emoji" data-mood="neutral">😐</span>
+                <span class="emoji" data-mood="sad">😢</span>
+                <span class="emoji" data-mood="excited">🔥</span>
+            </div>
+            <textarea id="mood-status" placeholder="Viết trạng thái của bạn..."></textarea>
+            <button id="submit-mood">Gửi</button>
+        </div>
+        <div class="mood-chart-section">
+            <h2>Biểu đồ tâm trạng tập thể</h2>
+            <select id="mood-period">
+                <option value="day">Theo ngày</option>
+                <option value="week">Theo tuần</option>
+            </select>
+            <canvas id="moodChart"></canvas>
+        </div>
+        <div class="mood-stats">
+            <h2>Thống kê thành viên</h2>
+            <ul id="mood-stats-list"></ul>
+        </div>
+    </div>
+    <script src="moodboard.js"></script>
+</body>
+</html> 

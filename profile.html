@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ sơ thành tích cá nhân - Gamification Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <h2>MAIN MENU</h2>
+        </div>
+        <div class="menu-items">
+            <a href="dashboard.html" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+            <a href="members.html" class="menu-item">
+                <i class="fas fa-users"></i> Thành viên
+            </a>
+            <a href="projects.html" class="menu-item">
+                <i class="fas fa-folder"></i> Dự án
+            </a>
+            <div class="menu-section">BÁO CÁO</div>
+            <a href="leave-request.html" class="menu-item">
+                <i class="fas fa-calendar-minus"></i> Đơn xin nghỉ phép
+            </a>
+            <a href="expense-tracker.html" class="menu-item">
+                <i class="fas fa-calendar-check"></i> Báo cáo hàng ngày
+            </a>
+            <a href="moodboard.html" class="menu-item">
+                <i class="fas fa-face-smile"></i> Bảng tâm trạng CLB
+            </a>
+            <a href="profile.html" class="menu-item active">
+                <i class="fas fa-id-badge"></i> Hồ sơ thành tích
+            </a>
+        </div>
+        <div class="logout">
+            <a href="login.html" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </a>
+        </div>
+    </div>
+    <div class="profile-container">
+        <div class="profile-select-member">
+            <label for="select-member">Chọn thành viên: </label>
+            <select id="select-member"></select>
+        </div>
+        <div class="profile-header">
+            <div class="avatar-section">
+                <img id="profile-avatar" src="https://via.placeholder.com/100" alt="Avatar">
+                <div class="profile-info">
+                    <h2 id="profile-name">Tên thành viên</h2>
+                    <div id="profile-role">Vai trò: Thành viên</div>
+                </div>
+            </div>
+            <div class="level-section">
+                <div class="level-label">Cấp độ <span id="profile-level">1</span></div>
+                <div class="xp-progress">
+                    <div class="xp-bar-bg">
+                        <div class="xp-bar" id="xp-bar"></div>
+                    </div>
+                    <div class="xp-text"><span id="profile-xp">0</span> XP</div>
+                </div>
+            </div>
+            <button class="share-btn" id="share-profile"><i class="fas fa-share-alt"></i> Chia sẻ hồ sơ</button>
+        </div>
+        <div class="badges-section">
+            <h3>Huy hiệu</h3>
+            <div class="badges-list" id="badges-list">
+                <!-- Huy hiệu sẽ được render ở đây -->
+            </div>
+        </div>
+        <div class="titles-section">
+            <h3>Danh hiệu</h3>
+            <div class="titles-list" id="titles-list">
+                <!-- Danh hiệu sẽ được render ở đây -->
+            </div>
+        </div>
+        <div class="history-section">
+            <h3>Lịch sử đóng góp gần đây</h3>
+            <div class="history-timeline" id="history-timeline">
+                <!-- Dòng thời gian sẽ được render ở đây -->
+            </div>
+        </div>
+        <div class="leaderboard-section">
+            <h3>Top 5 thành viên nhiều XP nhất</h3>
+            <table class="leaderboard-table" id="leaderboard-table">
+                <thead>
+                    <tr><th>Hạng</th><th>Thành viên</th><th>XP</th></tr>
+                </thead>
+                <tbody>
+                    <!-- Top 5 sẽ được render ở đây -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="profile.js"></script>
+</body>
+</html> 
